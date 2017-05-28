@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Password Strength Recognition using Machine Learning</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename = 'css/bootstrap.min.css') }}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <h3>PASSWORD STRENGTH EVALUATOR USING MACHINE LEARNING</h3><br>
+          <form method="POST" class="form-group">
+            <input type="text" name="password" class="form-control" placeholder="password" value="{{ request.form.password }}"><br>
+            <button type="submit" name="submit" class="btn btn-default">Check</button>
+          </form>
+        </div><!-- ./col-md-4 -->
+        <div class="col-md-4"></div>
+      </div><!-- ./row -->
+
+      <div class="row text-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        <h4>Total Training Data Instances: <span class="badge">{{ target }}</span></a></h4>
+
+          {% if (predicted == "Very Weak Password") %}
+                <h3><div class="label label-danger">{{ predicted }}</div></h3>
+          {% endif %}
+
+          {% if (predicted == "Weak Password") %}
+                <h3><div class="label label-warning">{{ predicted }}</div></h3>
+          {% endif %}
+
+          {% if (predicted == "Strong Password") %}
+                <h3><div class="label label-info">{{ predicted }}</div></h3>
+          {% endif %}
+
+          {% if (predicted == "Very Strong Password") %}
+                <h3><div class="label label-success">{{ predicted }}</div></h3>
+          {% endif %}
+          <br>
+          <!-- <table class="table table-bordered table-hover">
+            <div class="tbody">
+              <tr>
+                <td>Length < 8 </td>
+                <td>Very Weak Password</td>
+              </tr>
+
+              <tr>
+                <td>Uppercase Letters + Digits / Length > 8 </td>
+                <td>Weak Password</td>
+              </tr>
+
+              <tr>
+                <td>Special Symbols + Digits/ Special Symbols + Uppercase Letters</td>
+                <td>Strong Password</td>
+              </tr>
+
+               <tr>
+                <td>Special Symbols + Digits + Uppercase Letters</td>
+                <td>Very Strong Password</td>
+              </tr>
+            </div>
+          </table>--><!-- ./table-->
+        </div><!-- ./col-md-4 -->
+        <div class="col-md-4"></div>
+      </div><!-- ./row -->
+    </div><!-- ./container-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{ url_for('static', filename = 'js/jquery.js') }}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename = 'js/bootstrap.min.js') }}"></script>
+  </body>
+</html>
